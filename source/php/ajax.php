@@ -3,10 +3,10 @@
 /* Database Configuration. Add your details below */
 
 $dbOptions = array(
-	'db_host' => '',
-	'db_user' => '',
-	'db_pass' => '',
-	'db_name' => ''
+	'db_host' => 'localhost',
+	'db_user' => 'aitec',
+	'db_pass' => 'dachs',
+	'db_name' => 'chat'
 );
 
 /* Database Config End */
