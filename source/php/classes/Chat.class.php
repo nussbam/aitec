@@ -8,6 +8,8 @@ class Chat{
 		if(!$name || !$email){
 			throw new Exception('Fill in all the required fields.');
 		}
+
+
 		
 		if(!filter_input(INPUT_POST,'email',FILTER_VALIDATE_EMAIL)){
 			throw new Exception('Your email is invalid.');
