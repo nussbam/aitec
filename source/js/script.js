@@ -126,12 +126,8 @@ var chat = {
 		// Logging the user out:
 		
 		$('a.logoutButton').live('click',function(){
-
-			//
-			$('#chatTopBar').html(chat.render('loginTopBar',chat.data));
 			
 			$('#chatTopBar > span').fadeOut(function(){
-				$('#loginForm').fadeIn();
 				$(this).remove();
 			});
 			
@@ -177,6 +173,8 @@ var chat = {
 			$('#submitForm').fadeIn();
 			$('#chatText').focus();
 		});
+
+		$('#registerForm').fadeOut();
 		
 	},
 	
@@ -188,21 +186,13 @@ var chat = {
 		var arr = [];
 		switch(template){
 
-			case 'loginTopBar':
-			arr = ['<form id="loginForm" method="post" action="">',
-				'<input id="login_name" name="name" class="rounded" maxlength="16" />',
-				'<input id="login_password" name="password" class="rounded" />',
-				'<input type="submit" class="blueButton" value="Login" />',
-				'</form>'];
-
-				break;
 			case 'logoutTopBar':
 				arr = [
 				'<span><img src="',params.gravatar,'" width="23" height="23" />',
 				'<span class="name">',params.name,
 				'</span><a href="" class="logoutButton rounded">Logout</a></span>'];
 			break;
-			
+
 			case 'chatLine':
 				arr = [
 					'<div class="chat chat-',params.id,' rounded"><span class="gravatar"><img src="',params.gravatar,
