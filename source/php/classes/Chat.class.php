@@ -111,7 +111,7 @@ class Chat{
 			throw new Exception('You are not logged in');
 		}
 
-		
+		throw new Exception($_SESSION['user']);
 		if(!$chatText){
 			throw new Exception('You haven\' entered a chat message.');
 		}
