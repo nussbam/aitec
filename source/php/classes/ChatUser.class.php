@@ -8,6 +8,7 @@ class ChatUser extends ChatBase{
      * @return mixed
      */
     public function createUser(){
+        echo $this->password;
 
 		DB::query("
 			INSERT INTO webchat_users (name, gravatar, password_hash)
