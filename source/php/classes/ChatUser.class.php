@@ -36,16 +36,9 @@ class ChatUser extends ChatBase{
 
         $row = mysqli_fetch_assoc($result);
 
+
         return password_verify($this->password,$row['password_hash']);
 
-
-
-
-        if(mysqli_num_rows(result)>=1) {
-            throw new Exception('Password found');
-        }else{
-            return false;
-        }
     }
 
 
