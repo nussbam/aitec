@@ -26,8 +26,9 @@ class ChatLine extends ChatBase{
 				'".DB::esc($this->author)."'
 		)");
         $row = mysqli_fetch_assoc($result);
+        throw new Exception($row['userlevel']);
 
-        if($row['userlevel']==='default' || $row['userlevel']==='admin'){
+        if($row['userlevel']=='default' || $row['userlevel']=='admin'){
             return true;
         }
         return false;
