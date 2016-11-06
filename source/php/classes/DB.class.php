@@ -35,7 +35,8 @@ class DB {
 	}
 	
 	public static function esc($str){
-		return self::$instance->MySQLi->real_escape_string($str);
+	    $temp = self::$instance->MySQLi->real_escape_string($str);
+        return htmlspecialchars($temp,ENT_QUOTES | ENT_HTML401,'UTF-8');
 	}
 }
 
