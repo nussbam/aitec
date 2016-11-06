@@ -106,6 +106,7 @@ class Chat{
 	}
 	
 	public static function submitChat($chatText){
+	    throw new Exception('Test');
 		if(!$_SESSION['user']){
 			throw new Exception('You are not logged in');
 		}
