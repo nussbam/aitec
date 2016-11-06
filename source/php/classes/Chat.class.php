@@ -97,7 +97,7 @@ class Chat{
 	}
 	
 	public static function logout(){
-		DB::query("DELETE FROM webchat_users WHERE name = '".DB::esc($_SESSION['user']['name'])."'");
+		DB::query("UPDATE webchat_users SET status='inactive' WHERE name = '".DB::esc($_SESSION['user']['name'])."'");
 		
 		$_SESSION = array();
 		unset($_SESSION);
@@ -109,6 +109,12 @@ class Chat{
 		if(!$_SESSION['user']){
 			throw new Exception('You are not logged in');
 		}
+
+		$result = DB::query("SELECT userlevel FROM webchat_users WHERE name = '".DB::esc($_SESSION['user']['name'])."' ");
+        $row = mysqli_fetch_assoc($result);
+        if($row['userlevel']==='guest'){
+            throw new Exception('Needs admin approval to write into chat');
+        }
 		
 		if(!$chatText){
 			throw new Exception('You haven\' entered a chat message.');
@@ -139,7 +145,7 @@ class Chat{
 		
 		DB::query("DELETE FROM webchat_lines WHERE ts < SUBTIME(NOW(),'0:5:0')");
 		
-		$result = DB::query('SELECT * FROM webchat_users ORDER BY name ASC LIMIT 18');
+		$result = DB::query("SELECT * FROM webchat_users ORDER BY name ASC LIMIT 18 WHERE status='active'");
 		
 		$users = array();
 		while($user = $result->fetch_object()){

@@ -36,6 +36,12 @@ class ChatUser extends ChatBase{
 
         $row = mysqli_fetch_assoc($result);
 
+        if(password_verify($this->password,$row['password_hash'])){
+            DB::query("
+            UPDATE webchat_users SET status='active' WHERE name = '".DB::esc($this->name)."'   
+        ");
+            return true;
+        }
 
         return password_verify($this->password,$row['password_hash']);
 
