@@ -4,8 +4,8 @@
 
 class Chat{
 	
-	public static function login($name,$email){
-		if(!$name || !$email){
+	public static function register($name, $email, $password){
+		if(!$name || !$email || !$password){
 			throw new Exception('Fill in all the required fields.');
 		}
 
@@ -20,11 +20,12 @@ class Chat{
 		
 		$user = new ChatUser(array(
 			'name'		=> $name,
-			'gravatar'	=> $gravatar
+			'gravatar'	=> $gravatar,
+            'password'  => $password
 		));
 		
 		// The save method returns a MySQLi object
-		if($user->save()->affected_rows != 1){
+		if($user->createUser()->affected_rows != 1){
 			throw new Exception('This nick is in use.');
 		}
 		

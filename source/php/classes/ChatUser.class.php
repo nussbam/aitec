@@ -2,19 +2,33 @@
 
 class ChatUser extends ChatBase{
 	
-	protected $name = '', $gravatar = '';
+	protected $name = '', $gravatar = '', $password='';
 	
-	public function save(){
-		
+	public function createUser(){
+
 		DB::query("
-			INSERT INTO webchat_users (name, gravatar)
+			INSERT INTO webchat_users (name, gravatar, password_hash)
 			VALUES (
 				'".DB::esc($this->name)."',
 				'".DB::esc($this->gravatar)."'
+				'".DB::esc($this->password)."'
 		)");
 		
 		return DB::getMySQLiObject();
 	}
+
+    public function loginUser(){
+
+        $pwhash= DB::query("
+            SELECT password_hash FROM webchat_users WHERE name = '".DB::esc($this->name)."'
+        
+        ");
+
+       return password_verify($this->password,$pwhash);
+    }
+
+
+
 	
 	public function update(){
 		DB::query("
