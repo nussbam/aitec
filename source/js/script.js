@@ -56,6 +56,28 @@ var chat = {
 			
 			return false;
 		});
+
+
+
+		$('#registerForm').submit(function(){
+
+			if(working) return false;
+			working = true;
+
+			// Using our chatPOST wrapper function
+			// (defined in the bottom):
+
+			$.chatPOST('register',$(this).serialize(),function(r){
+				working = false;
+
+				if(r.error){
+					chat.displayError(r.error);
+				}
+				else chat.login(r.name,r.gravatar);
+			});
+
+			return false;
+		});
 		
 		// Submitting a new chat entry:
 		
