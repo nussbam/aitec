@@ -127,9 +127,9 @@ var chat = {
 		
 		$('a.logoutButton').live('click',function(){
 			
-			$('#chatTopBar > span').fadeOut(function(){
-				$('#loginForm').fadeIn();
-			});
+			/*$('#chatTopBar > span').fadeOut(function(){
+				$(this).remove();
+			});*/
 			
 			$('#submitForm').fadeOut(function(){
 				$('#loginForm').fadeIn();
