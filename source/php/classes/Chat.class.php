@@ -112,6 +112,7 @@ class Chat{
 
 		$result = DB::query("SELECT userlevel FROM webchat_users WHERE name = '".DB::esc($_SESSION['user']['name'])."' ");
         $row = mysqli_fetch_assoc($result);
+        throw new Exception($row['userlevel']);
         if($row['userlevel']='guest'){
             throw new Exception('Needs admin approval to write into chat');
         }
