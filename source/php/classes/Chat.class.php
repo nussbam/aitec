@@ -26,7 +26,7 @@ class Chat{
 		
 		// The save method returns a MySQLi object
 		if($user->createUser()->affected_rows != 1){
-			throw new Exception('This nick is in use.');
+			throw new Exception('This nick is in use. Please choose another one');
 		}
 		
 		$_SESSION['user']	= array(
