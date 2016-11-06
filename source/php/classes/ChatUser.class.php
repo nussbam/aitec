@@ -17,9 +17,7 @@ class ChatUser extends ChatBase{
 				'".DB::esc($this->password)."'
 		)");
 
-        if(DB::getMySQLiObject()->affectedRows=0){
-            echo DB::getMySQLiObject()->error;
-        }
+
 		
 		return DB::getMySQLiObject();
 	}
