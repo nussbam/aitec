@@ -37,6 +37,7 @@ class ChatUser extends ChatBase{
             throw new Exception('was executed');
             return password_verify($this->password, $pwhash);
         }else{
+            throw new Exception('was not executed');
             return false;
         }
     }
