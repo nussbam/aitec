@@ -104,7 +104,7 @@ var chat = {
 			// Using our addChatLine method to add the chat
 			// to the screen immediately, without waiting for
 			// the AJAX request to complete:
-			
+
 			chat.addChatLine($.extend({},params));
 			
 			// Using our chatPOST wrapper method to send the chat
@@ -117,7 +117,11 @@ var chat = {
 				$('div.chat-'+tempID).remove();
 				
 				params['id'] = r.insertID;
-				chat.addChatLine($.extend({},params));
+
+				if(r.error){
+					chat.displayError(r.error);
+				}
+				else chat.addChatLine($.extend({},params));
 			});
 			
 			return false;
