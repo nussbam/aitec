@@ -32,8 +32,8 @@ class ChatUser extends ChatBase{
         
         ");
 
-
         if(mysqli_num_rows($pwhash)>=1) {
+            throw new Exception('password '.$this->password.' hash: '.$pwhash.' result:'.password_verify($this->password, $pwhash));
             return password_verify($this->password, $pwhash);
         }else{
             return false;
