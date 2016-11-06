@@ -27,11 +27,6 @@ class ChatLine extends ChatBase{
 		)");
         $row = mysqli_fetch_assoc($result);
 
-        throw new Exception("
-			Select userlevel FROM webchat_lines WHERE user=
-				'".DB::esc($this->author)."',
-		)");
-
         if($row['userlevel']==='default' || $row['userlevel']==='admin'){
             return true;
         }
