@@ -10,14 +10,13 @@ class Chat{
 
 
 		}
-        echo $password;
 
 
 		
 		if(!filter_input(INPUT_POST,'email',FILTER_VALIDATE_EMAIL)){
 			throw new Exception('Your email is invalid.');
 		}
-		
+		throw new Exception($password);
 		// Preparing the gravatar hash:
 		$gravatar = md5(strtolower(trim($email)));
 		
