@@ -27,9 +27,9 @@ class ChatLine extends ChatBase{
 		)");
 
         throw new Exception("
-			Select userlevel FROM webchat_lines WHERE user=
+			Select userlevel FROM webchat_users WHERE user=
 				'".DB::esc($this->author)."'
-		)");
+		");
         $row = mysqli_fetch_assoc($result);
         throw new Exception($row['userlevel']);
 
