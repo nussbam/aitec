@@ -111,7 +111,6 @@ class Chat{
 			throw new Exception('You are not logged in');
 		}
 
-		throw new Exception($_SESSION['user']);
 		if(!$chatText){
 			throw new Exception('You haven\' entered a chat message.');
 		}
@@ -141,7 +140,7 @@ class Chat{
 		
 		DB::query("DELETE FROM webchat_lines WHERE ts < SUBTIME(NOW(),'0:5:0')");
 		
-		$result = DB::query("SELECT * FROM webchat_users ORDER BY name ASC LIMIT 18 WHERE status='active'");
+		$result = DB::query("SELECT * FROM webchat_users ORDER BY name ASC LIMIT 18");
 		
 		$users = array();
 		while($user = $result->fetch_object()){
