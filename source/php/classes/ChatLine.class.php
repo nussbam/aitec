@@ -22,14 +22,11 @@ class ChatLine extends ChatBase{
 
 	public function checkPermission(){
         $result = DB::query("
-			Select userlevel FROM webchat_lines WHERE user=
-				'".DB::esc($this->author)."'
-		)");
-
-        throw new Exception("
 			Select userlevel FROM webchat_users WHERE user=
 				'".DB::esc($this->author)."'
 		");
+
+
         $row = mysqli_fetch_assoc($result);
 
 
