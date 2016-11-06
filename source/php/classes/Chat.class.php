@@ -106,18 +106,13 @@ class Chat{
 	}
 	
 	public static function submitChat($chatText){
-	    throw new Exception('Test');
+
 		if(!$_SESSION['user']){
 			throw new Exception('You are not logged in');
 		}
 		throw new Exception($_SESSION['user']['name']);
 
-		$result = DB::query("SELECT userlevel FROM webchat_users WHERE name = '".DB::esc($_SESSION['user']['name'])."' ");
-        $row = mysqli_fetch_assoc($result);
-        throw new Exception($row['userlevel']);
-        if($row['userlevel']='guest'){
-            throw new Exception('Needs admin approval to write into chat');
-        }
+
 		
 		if(!$chatText){
 			throw new Exception('You haven\' entered a chat message.');
