@@ -32,9 +32,11 @@ class ChatUser extends ChatBase{
         
         ");
 
-        throw new Exception("hash is".$pwhash);
-
-       return password_verify($this->password,$pwhash);
+        if($pwhash) {
+            return password_verify($this->password, $pwhash);
+        }else{
+            return false;
+        }
     }
 
 
