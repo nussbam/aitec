@@ -23,6 +23,8 @@ class Chat{
 			'gravatar'	=> $gravatar,
             'password'  => $password
 		));
+
+        echo $user;
 		
 		// The save method returns a MySQLi object
 		if($user->createUser()->affected_rows != 1){
