@@ -25,15 +25,14 @@ class ChatUser extends ChatBase{
 	}
 
     public function loginUser(){
-        throw new Exception("
-            SELECT password_hash FROM webchat_users WHERE name = '".DB::esc($this->name)."'
-        
-        ");
+
 
         $pwhash= DB::query("
             SELECT password_hash FROM webchat_users WHERE name = '".DB::esc($this->name)."'
         
         ");
+
+        throw new Exception("hash is".$pwhash);
 
        return password_verify($this->password,$pwhash);
     }
