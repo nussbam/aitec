@@ -147,7 +147,6 @@ class Chat{
 		DB::query("DELETE FROM webchat_lines WHERE ts < SUBTIME(NOW(),'0:5:0')");
 		
 		$result = DB::query("SELECT * FROM webchat_users where status='active' ORDER BY name ASC LIMIT 18");
-		$result = DB::query("SELECT * FROM webchat_users where status='active' ORDER BY name ASC LIMIT 18");
 
 		$users = array();
 		while($user = $result->fetch_object()){
@@ -157,7 +156,7 @@ class Chat{
 	
 		return array(
 			'users' => $users,
-			'total' => DB::query('SELECT COUNT(*) as cnt FROM webchat_users')->fetch_object()->cnt
+			'total' => DB::query("SELECT COUNT(*) as cnt FROM webchat_users WHERE status='active'")->fetch_object()->cnt
 		);
 	}
 	
