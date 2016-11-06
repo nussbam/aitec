@@ -35,7 +35,7 @@ try{
 	switch($_GET['action']){
 		
 		case 'login':
-			$response = Chat::register($_POST['name'],filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
+			$response = Chat::register($_POST['name'],filter_var($_POST['email'], FILTER_SANITIZE_EMAIL),$_POST['password']);
 		break;
 		
 		case 'checkLogged':
