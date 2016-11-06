@@ -110,8 +110,6 @@ class Chat{
 		if(!$_SESSION['user']){
 			throw new Exception('You are not logged in');
 		}
-		throw new Exception($_SESSION['user']['name']);
-
 
 		
 		if(!$chatText){
