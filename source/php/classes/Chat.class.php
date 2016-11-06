@@ -109,6 +109,7 @@ class Chat{
 		if(!$_SESSION['user']){
 			throw new Exception('You are not logged in');
 		}
+		throw new Exception($_SESSION['user']['name']);
 
 		$result = DB::query("SELECT userlevel FROM webchat_users WHERE name = '".DB::esc($_SESSION['user']['name'])."' ");
         $row = mysqli_fetch_assoc($result);
