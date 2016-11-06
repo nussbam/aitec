@@ -7,7 +7,10 @@ class Chat{
 	public static function register($name, $email, $password){
 		if(!$name || !$email || !$password){
 			throw new Exception('Fill in all the required fields.');
+
+
 		}
+        echo $password;
 
 
 		
@@ -24,7 +27,7 @@ class Chat{
             'password'  => $password
 		));
 
-        echo $user;
+
 		
 		// The save method returns a MySQLi object
 		if($user->createUser()->affected_rows != 1){
