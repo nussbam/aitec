@@ -62,7 +62,7 @@ class Chat{
 
 
         // The save method returns a MySQLi object
-        if($user->loginUser()){
+        if(!$user->loginUser()){
 
             throw new Exception('Invalid Login, try again!');
         }
