@@ -131,11 +131,14 @@ var chat = {
 				$(this).remove();
 			});
 			
-			$('#submitForm').fadeOut(function(){
-				$('#loginForm').fadeIn();
-			});
+
 			
 			$.chatPOST('logout');
+
+			$('#submitForm').fadeOut(function(){
+				$('#loginForm').fadeIn();
+				$('#registerForm').fadeIn();
+			});
 			
 			return false;
 		});
