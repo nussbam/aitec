@@ -146,8 +146,9 @@ class Chat{
 		
 		DB::query("DELETE FROM webchat_lines WHERE ts < SUBTIME(NOW(),'0:5:0')");
 		
-		$result = DB::query("SELECT * FROM webchat_users ORDER BY name ASC LIMIT 18 where status='active'");
-		
+		$result = DB::query("SELECT * FROM webchat_users where status='active' ORDER BY name ASC LIMIT 18");
+		$result = DB::query("SELECT * FROM webchat_users where status='active' ORDER BY name ASC LIMIT 18");
+
 		$users = array();
 		while($user = $result->fetch_object()){
 			$user->gravatar = Chat::gravatarFromHash($user->gravatar,30);
