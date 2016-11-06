@@ -19,6 +19,21 @@ class ChatLine extends ChatBase{
 		
 		return DB::getMySQLiObject();
 	}
+
+	public function checkPermission(){
+        $result = DB::query("
+			Select userlevel FROM webchat_lines WHERE user=
+				'".DB::esc($this->author)."',
+		)");
+        $row = mysqli_fetch_assoc($result);
+
+        if($row['userlevel']==='default' || $row['userlevel']==='admin'){
+            return true;
+        }
+        return false;
+
+
+    }
 }
 
 ?>

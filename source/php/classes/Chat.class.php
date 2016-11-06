@@ -120,9 +120,15 @@ class Chat{
 			'gravatar'	=> $_SESSION['user']['gravatar'],
 			'text'		=> $chatText
 		));
+
+        if($chat->checkPermission()){
 	
-		// The save method returns a MySQLi object
-		$insertID = $chat->save()->insert_id;
+		    // The save method returns a MySQLi object
+		    $insertID = $chat->save()->insert_id;
+        }
+        else{
+            throw new Exception("Useraccount needs to be approved by admin");
+        }
 	
 		return array(
 			'status'	=> 1,
