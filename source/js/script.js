@@ -174,7 +174,10 @@ var chat = {
 			$('#chatText').focus();
 		});
 
-		$('#registerForm').fadeOut();
+		$('#registerForm').fadeOut(function(){
+			$('#submitForm').fadeIn();
+			$('#chatText').focus();
+		});
 		
 	},
 	
