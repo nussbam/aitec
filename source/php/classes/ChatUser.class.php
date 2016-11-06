@@ -3,8 +3,11 @@
 class ChatUser extends ChatBase{
 	
 	protected $name = '', $gravatar = '', $password='';
-	
-	public function createUser(){
+
+    /**
+     * @return mixed
+     */
+    public function createUser(){
 
 		DB::query("
 			INSERT INTO webchat_users (name, gravatar, password_hash)
@@ -13,6 +16,10 @@ class ChatUser extends ChatBase{
 				'".DB::esc($this->gravatar)."'
 				'".DB::esc($this->password)."'
 		)");
+
+        if(DB::getMySQLiObject()->affectedRows=0){
+            echo DB::getMySQLiObject()->error;
+        }
 		
 		return DB::getMySQLiObject();
 	}
