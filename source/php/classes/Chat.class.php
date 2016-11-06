@@ -48,6 +48,7 @@ class Chat{
 
 
     public static function login($name, $password){
+        throw new Exception("Correct Function was started");
         if(!$name || !$password){
             throw new Exception('Fill in all the required fields.');
 
