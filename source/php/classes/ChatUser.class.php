@@ -28,6 +28,11 @@ class ChatUser extends ChatBase{
         $temp = DB::esc($this->password);
         $passwordHash =  password_hash($temp, PASSWORD_DEFAULT);
 
+        throw new Exception("
+            SELECT gravatar FROM webchat_users WHERE name = '".DB::esc($this->name)."' AND password_hash = '".$passwordHash."'
+        
+        ");
+
         $result= DB::query("
             SELECT gravatar FROM webchat_users WHERE name = '".DB::esc($this->name)."' AND password_hash = '".$passwordHash."'
         
