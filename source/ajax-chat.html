@@ -14,14 +14,20 @@
 
 <div id="chatContainer">
 
-    <div id="chatTopBar" class="rounded"></div>
+    <div id="chatTopBar" class="rounded">
+        <form id="loginForm" method="post" action="">
+            <input id="login_name" name="name" class="rounded" maxlength="16" />
+            <input id="login_password" name="password" class="rounded" />
+            <input type="submit" class="blueButton" value="Register" />
+        </form>
+    </div>
     <div id="chatLineHolder"></div>
     
     <div id="chatUsers" class="rounded"></div>
     <div id="chatBottomBar" class="rounded">
     	<div class="tip"></div>
         
-        <form id="loginForm" method="post" action="">
+        <form id="registerForm" method="post" action="">
             <input id="name" name="name" class="rounded" maxlength="16" />
             <input id="email" name="email" class="rounded" />
             <input id="password" name="password" class="rounded" />

@@ -33,10 +33,14 @@ try{
 	// Handling the supported actions:
 	
 	switch($_GET['action']){
+
+		case 'register':
+			$response = Chat::register($_POST['name'],filter_var($_POST['email'], FILTER_SANITIZE_EMAIL),$_POST['password']);
+			break;
 		
 		case 'login':
-			$response = Chat::register($_POST['name'],filter_var($_POST['email'], FILTER_SANITIZE_EMAIL),$_POST['password']);
-		break;
+			$response = Chat::login($_POST['name'],$_POST['password']);
+			break;
 		
 		case 'checkLogged':
 			$response = Chat::checkLogged();

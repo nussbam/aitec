@@ -145,7 +145,7 @@ var chat = {
 		
 		chat.data.name = name;
 		chat.data.gravatar = gravatar;
-		$('#chatTopBar').html(chat.render('loginTopBar',chat.data));
+		$('#chatTopBar').html(chat.render('logoutTopBar',chat.data));
 		
 		$('#loginForm').fadeOut(function(){
 			$('#submitForm').fadeIn();
@@ -161,7 +161,7 @@ var chat = {
 		
 		var arr = [];
 		switch(template){
-			case 'loginTopBar':
+			case 'logoutTopBar':
 				arr = [
 				'<span><img src="',params.gravatar,'" width="23" height="23" />',
 				'<span class="name">',params.name,
