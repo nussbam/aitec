@@ -17,6 +17,7 @@ class ChatUser extends ChatBase{
 				'".DB::esc($this->gravatar)."'
 				'".DB::esc($this->password)."'
 		)");
+        echo 'worked';
 
 
 		
