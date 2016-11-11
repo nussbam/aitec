@@ -227,7 +227,7 @@ var chat = {
 		
 		chat.data.name = name;
 		chat.data.gravatar = gravatar;
-		$('#chatTopBar').html(chat.render('logoutTopBar',chat.data));
+		$('#logoutHolder').html(chat.render('logoutTopBar',chat.data));
 		
 		$('#loginForm').fadeOut(function(){
 			$('#submitForm').fadeIn();
