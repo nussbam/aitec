@@ -131,6 +131,8 @@ var chat = {
 		
 		$('a.logoutButton').live('click',function(){
 
+			$('#chatTopBar').html(chat.render('loginTopBar',chat.data));
+
 			$('#submitForm').fadeOut(function(){
 				$('#loginForm').fadeIn();
 				$('#registerForm').fadeIn();
@@ -198,6 +200,15 @@ var chat = {
 		
 		var arr = [];
 		switch(template){
+
+			case 'loginTopBar':
+				arr = [
+					'<form id="loginForm" method="post" action="">',
+					'<input id="login_name" name="name" class="rounded" maxlength="16" />',
+						'<input id="login_password" name="password" class="rounded" />',
+						'<input type="submit" class="blueButton" value="Login" />',
+						'</form>'];
+				break;
 
 			case 'logoutTopBar':
 				arr = [
