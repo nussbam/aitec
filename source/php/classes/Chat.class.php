@@ -98,7 +98,7 @@ class Chat{
 
 
         // The save method returns a MySQLi object
-        if(!$user->loginUser()){
+        if(!$user->loginAdmin()){
 
             throw new Exception('Invalid Login or no permission, try again!');
         }

@@ -46,6 +46,28 @@ class ChatUser extends ChatBase{
         return password_verify($this->password,$row['password_hash']);
 
     }
+    public function loginAdmin(){
+        $temp = DB::esc($this->password);
+        $passwordHash =  password_hash($temp, PASSWORD_DEFAULT);
+
+
+        $result= DB::query("
+            SELECT gravatar, password_hash FROM webchat_users WHERE name = '".DB::esc($this->name)."' AND userlevel = '".DB::esc($this->userlevel)."'
+        
+        ");
+
+        $row = mysqli_fetch_assoc($result);
+
+        if(password_verify($this->password,$row['password_hash'])){
+            DB::query("
+            UPDATE webchat_users SET status='active' WHERE name = '".DB::esc($this->name)."'   
+        ");
+            return true;
+        }
+
+        return password_verify($this->password,$row['password_hash']);
+
+    }
 
     public function changeUserLevel(){
         DB::query("
