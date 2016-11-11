@@ -138,10 +138,10 @@ var chat = {
 				$('#registerForm').fadeIn();
 			});
 
-			$('#chatTopBar').fadeOut(function(){
+			/*$('#chatTopBar').fadeOut(function(){
 				$('#loginForm').fadeIn();
 				//$(this).remove();
-			});
+			});*/
 
 			/*$('#chatTopBar > span').fadeOut(function(){
 				$('#loginForm').fadeIn();
