@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Making an AJAX Web Chat With PHP, MySQL and jQuery </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Making an AJAX Web Chat With PHP, MySQL and jQuery </title>
 
-    <link rel="stylesheet" type="text/css" href="js/jScrollPane/jScrollPane.css" />
-    <link rel="stylesheet" type="text/css" href="css/page.css" />
-    <link rel="stylesheet" type="text/css" href="css/chat.css" />
+<link rel="stylesheet" type="text/css" href="js/jScrollPane/jScrollPane.css" />
+<link rel="stylesheet" type="text/css" href="css/page.css" />
+<link rel="stylesheet" type="text/css" href="css/chat.css" />
 
 </head>
 
@@ -22,11 +22,31 @@
             <input type="submit" class="blueButton" value="Login" />
         </form>
     </div>
+    <div id="chatLineHolder"></div>
+    
+    <div id="chatUsers" class="rounded"></div>
+    <div id="chatBottomBar" class="rounded">
+    	<div class="tip"></div>
+        
+        <form id="registerForm" method="post" action="">
+            <input id="name" name="name" class="rounded" maxlength="16" />
+            <input id="email" name="email" class="rounded" />
+            <input id="password" name="password" class="rounded" />
+            <input type="submit" class="blueButton" value="Register" />
+        </form>
+        
+        <form id="submitForm" method="post" action="">
+            <input id="chatText" name="chatText" class="rounded" maxlength="255" />
+            <input type="submit" class="blueButton" value="Submit" />
+        </form>
+        
+    </div>
+    
 </div>
 
 <div id="footer">
-    <div class="tri"></div>
-    <h1>Making an AJAX Web Chat With PHP and jQuery</h1>
+	<div class="tri"></div>
+	<h1>Making an AJAX Web Chat With PHP and jQuery</h1>
 </div>
 
 <script src="js/jquery.min.js"></script>
