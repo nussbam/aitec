@@ -129,56 +129,10 @@ var chat = {
 		
 		// Logging the user in
 
-
-
-
-		$('loginForm').live('submit',function(){
-
-			if(working) return false;
-			working = true;
-
-			// Using our chatPOST wrapper function
-			// (defined in the bottom):
-
-			$.chatPOST('login',$(this).serialize(),function(r){
-				//
-				working = false;
-
-				if(r.error){
-					chat.displayError(r.error);
-				}
-				else chat.login(r.name,r.gravatar);
-			});
-
-			return false;
-
-			//$('#chatTopBar').html(chat.render('loginTopBar',chat.data));
-
-
-
-			/*$('#chatTopBar').fadeOut(function(){
-			 $('#loginForm').fadeIn();
-			 //$(this).remove();
-			 });*/
-
-			/*$('#chatTopBar > span').fadeOut(function(){
-			 $('#loginForm').fadeIn();
-			 //$(this).remove();
-			 });*/
-
-
-
-			$.chatPOST('logout');
-
-
-
-			return false;
-		});
-
 		
 		$('a.logoutButton').live('click',function(){
 
-			$('#chatTopBar').html(chat.render('loginTopBar',chat.data));
+			//$('#chatTopBar').html(chat.render('loginTopBar',chat.data));
 
 			$('#submitForm').fadeOut(function(){
 				$('#loginForm').fadeIn();
