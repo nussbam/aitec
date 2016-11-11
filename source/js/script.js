@@ -130,7 +130,12 @@ var chat = {
 		// Logging the user out:
 		
 		$('a.logoutButton').live('click',function(){
-			
+
+			$('#submitForm').fadeOut(function(){
+				$('#loginForm').fadeIn();
+				$('#registerForm').fadeIn();
+			});
+
 			$('#chatTopBar > span').fadeOut(function(){
 				$('#loginForm').fadeIn();
 				$(this).remove();
@@ -140,10 +145,7 @@ var chat = {
 			
 			$.chatPOST('logout');
 
-			$('#submitForm').fadeOut(function(){
-				$('#loginForm').fadeIn();
-				$('#registerForm').fadeIn();
-			});
+
 			
 			return false;
 		});
