@@ -2,7 +2,7 @@
 
 class ChatUser extends ChatBase{
 	
-	protected $name = '', $gravatar = '', $password='';
+	protected $name = '', $gravatar = '', $password='', $userlevel ='';
 
     /**
      * @return mixed
@@ -45,6 +45,17 @@ class ChatUser extends ChatBase{
 
         return password_verify($this->password,$row['password_hash']);
 
+    }
+
+    public function changeUserLevel(){
+        DB::query("
+			UPDATE webchat_users SET userlevel = '".DB::esc($this->userlevel)."'
+			WHERE name = '".DB::esc($this->name)."'");
+    }
+
+    public function deleteUser(){
+        DB::query("
+			DELETE FROM webchat_users WHERE name = '".DB::esc($this->name)."'");
     }
 
 
