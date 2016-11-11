@@ -140,7 +140,7 @@ var chat = {
 			});
 
 
-			$('#logoutHolder').fadeOut(function(){
+			$('#logoutHolder > span').fadeOut(function(){
 				$('#loginForm').fadeIn();
 				$(this).remove();
 			});
