@@ -138,7 +138,7 @@ var chat = {
 
 			$('#chatTopBar > span').fadeOut(function(){
 				$('#loginForm').fadeIn();
-				$(this).remove();
+				//$(this).remove();
 			});
 			
 
