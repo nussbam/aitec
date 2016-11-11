@@ -127,10 +127,12 @@ var chat = {
 			return false;
 		});
 		
-		// Logging the user out:
+		// Logging the user in
 
 
-		$('input.blueButton').live('click',function(){
+
+
+		$('loginForm').live('submit',function(){
 
 			if(working) return false;
 			working = true;
