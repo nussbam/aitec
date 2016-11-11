@@ -141,6 +141,7 @@ var chat = {
 			// (defined in the bottom):
 
 			$.chatPOST('login',$(this).serialize(),function(r){
+				//
 				working = false;
 
 				if(r.error){
