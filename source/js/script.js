@@ -185,11 +185,13 @@ var chat = {
 		
 		$('#loginForm').fadeOut(function(){
 			$('#submitForm').fadeIn();
+			$('#logoutHolder').fadeIn();
 			$('#chatText').focus();
 		});
 
 		$('#registerForm').fadeOut(function(){
 			$('#submitForm').fadeIn();
+			$('#logoutHolder').fadeIn();
 			$('#chatText').focus();
 		});
 		
