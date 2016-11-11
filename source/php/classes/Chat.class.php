@@ -81,6 +81,42 @@ class Chat{
             'gravatar'	=> Chat::gravatarFromHash($gravatar)
         );
     }
+
+    public static function loginAdmin($name, $password){
+        if(!$name || !$password){
+            throw new Exception('Fill in all the required fields.');
+
+
+        }
+
+        $user = new ChatUser(array(
+            'name'		=> $name,
+            'password'  => $password,
+            'userlevel' => 'admin'
+        ));
+
+
+
+        // The save method returns a MySQLi object
+        if(!$user->loginUser()){
+
+            throw new Exception('Invalid Login or no permission, try again!');
+        }
+
+        //temporary value TODO fix this
+        $gravatar = '0bc83cb571cd1c50ba6f3e8a78ef1346';
+
+        $_SESSION['user']	= array(
+            'name'		=> $name,
+            'gravatar'	=> $gravatar
+        );
+
+        return array(
+            'status'	=> 1,
+            'name'		=> $name,
+            'gravatar'	=> Chat::gravatarFromHash($gravatar)
+        );
+    }
 	
 	public static function checkLogged(){
 		$response = array('logged' => false);

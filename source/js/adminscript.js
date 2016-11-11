@@ -42,7 +42,7 @@ var chat = {
 			// Using our chatPOST wrapper function
 			// (defined in the bottom):
 			
-			$.chatPOST('login',$(this).serialize(),function(r){
+			$.chatPOST('loginAdmin',$(this).serialize(),function(r){
 				working = false;
 				
 				if(r.error){

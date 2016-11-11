@@ -41,6 +41,10 @@ try{
 		case 'login':
 			$response = Chat::login($_POST['name'],$_POST['password']);
 			break;
+
+		case 'loginAdmin':
+			$response = Chat::loginAdmin($_POST['name'],$_POST['password']);
+			break;
 		
 		case 'checkLogged':
 			$response = Chat::checkLogged();
