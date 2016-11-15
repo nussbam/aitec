@@ -25,10 +25,7 @@ var chat = {
 		// Converting the #chatLineHolder div into a jScrollPane,
 		// and saving the plugin's API in chat.data:
 		
-		chat.data.jspAPI = $('#chatLineHolder').jScrollPane({
-			verticalDragMinHeight: 12,
-			verticalDragMaxHeight: 12
-		}).data('jsp');
+
 		
 		// We use the working variable to prevent
 		// multiple form submissions:
@@ -56,7 +53,6 @@ var chat = {
 			
 			return false;
 		});
-
 
 
 
@@ -90,7 +86,15 @@ var chat = {
 			return false;
 		});
 		
-
+		// Checking whether the user is already logged (browser refresh)
+		
+		/*TODO add a check so the admin doesn't has to login after a form switch
+		$.chatGET('checkAdminLogged',function(r){
+			if(r.logged){
+				chat.login(r.loggedAs.name,r.loggedAs.gravatar);
+			}
+		});*/
+		
 		// Self executing timeout functions
 		
 		(function getChatsTimeoutFunction(){
@@ -100,6 +104,10 @@ var chat = {
 		(function getUsersTimeoutFunction(){
 			chat.getUsers(getUsersTimeoutFunction);
 		})();
+
+		(function getCRUDUsersTimeoutFunction(){
+			chat.getCRUDUsers(getCRUDUsersTimeoutFunction);
+		})();
 		
 	},
 	
@@ -108,6 +116,7 @@ var chat = {
 	
 	login : function(name,gravatar){
 		
+		chat.data.name = name;
 		chat.data.name = name;
 		chat.data.gravatar = gravatar;
 		$('#logoutHolder').html(chat.render('logoutTopBar',chat.data));
@@ -150,19 +159,25 @@ var chat = {
 				'</span><a href="" class="logoutButton rounded">Logout</a></span>'];
 			break;
 
-			case 'chatLine':
-				arr = [
-					'<div class="chat chat-',params.id,' rounded"><span class="gravatar"><img src="',params.gravatar,
-					'" width="23" height="23" onload="this.style.visibility=\'visible\'" />','</span><span class="author">',params.author,
-					':</span><span class="text">',params.text,'</span><span class="time">',params.time,'</span></div>'];
-			break;
-			
+
 			case 'user':
 				arr = [
 					'<div class="user" title="',params.name,'"><img src="',
 					params.gravatar,'" width="30" height="30" onload="this.style.visibility=\'visible\'" /></div>'
 				];
 			break;
+
+			case 'crudUser':
+				arr = [
+
+					'<tr>' +
+						'<td>params.id</td>' +
+						'<td>params.name</td>' +
+						'<td>params.userlevel</td>' +
+					'</tr>'
+
+				];
+				break;
 		}
 		
 		// A single array join is faster than
@@ -172,104 +187,11 @@ var chat = {
 		
 	},
 	
-	// The addChatLine method ads a chat entry to the page
-	
-	addChatLine : function(params){
-		
-		// All times are displayed in the user's timezone
-		
-		var d = new Date();
-		if(params.time) {
-			
-			// PHP returns the time in UTC (GMT). We use it to feed the date
-			// object and later output it in the user's timezone. JavaScript
-			// internally converts it for us.
-			
-			d.setUTCHours(params.time.hours,params.time.minutes);
-		}
-		
-		params.time = (d.getHours() < 10 ? '0' : '' ) + d.getHours()+':'+
-					  (d.getMinutes() < 10 ? '0':'') + d.getMinutes();
-		
-		var markup = chat.render('chatLine',params),
-			exists = $('#chatLineHolder .chat-'+params.id);
 
-		if(exists.length){
-			exists.remove();
-		}
-		
-		if(!chat.data.lastID){
-			// If this is the first chat, remove the
-			// paragraph saying there aren't any:
-			
-			$('#chatLineHolder p').remove();
-		}
-		
-		// If this isn't a temporary chat:
-		if(params.id.toString().charAt(0) != 't'){
-			var previous = $('#chatLineHolder .chat-'+(+params.id - 1));
-			if(previous.length){
-				previous.after(markup);
-			}
-			else chat.data.jspAPI.getContentPane().append(markup);
-		}
-		else chat.data.jspAPI.getContentPane().append(markup);
-		
-		// As we added new content, we need to
-		// reinitialise the jScrollPane plugin:
-		
-		chat.data.jspAPI.reinitialise();
-		chat.data.jspAPI.scrollToBottom(true);
-		
-	},
 	
 	// This method requests the latest chats
 	// (since lastID), and adds them to the page.
-	
-	getChats : function(callback){
-		$.chatGET('getChats',{lastID: chat.data.lastID},function(r){
-			
-			for(var i=0;i<r.chats.length;i++){
-				chat.addChatLine(r.chats[i]);
-			}
-			
-			if(r.chats.length){
-				chat.data.noActivity = 0;
-				chat.data.lastID = r.chats[i-1].id;
-			}
-			else{
-				// If no chats were received, increment
-				// the noActivity counter.
-				
-				chat.data.noActivity++;
-			}
-			
-			if(!chat.data.lastID){
-				chat.data.jspAPI.getContentPane().html('<p class="noChats">No chats yet</p>');
-			}
-			
-			// Setting a timeout for the next request,
-			// depending on the chat activity:
-			
-			var nextRequest = 1000;
-			
-			// 2 seconds
-			if(chat.data.noActivity > 3){
-				nextRequest = 2000;
-			}
-			
-			if(chat.data.noActivity > 10){
-				nextRequest = 5000;
-			}
-			
-			// 15 seconds
-			if(chat.data.noActivity > 20){
-				nextRequest = 15000;
-			}
-		
-			setTimeout(callback,nextRequest);
-		});
-	},
+
 	
 	// Requesting a list with all the users.
 	
@@ -297,6 +219,28 @@ var chat = {
 			
 			$('#CRUDUsers').html(users.join(''));
 			
+			setTimeout(callback,15000);
+		});
+	},
+
+	getCRUDUsers : function(callback){
+		$.chatGET('getCRUDUsers',function(r){
+
+			var crudResult = [];
+
+			crudResult.push('<table>');
+
+			for(var i=0; i< r.result.length;i++){
+				if(r.result[i]){
+					crudResult.push(chat.render('crudUser',r.result[i]));
+				}
+			}
+			crudResult.push('</table>');
+
+
+
+			$('#CRUDUsers').html(crudResult.join(''));
+
 			setTimeout(callback,15000);
 		});
 	},
