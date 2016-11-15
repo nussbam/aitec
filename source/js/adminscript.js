@@ -94,7 +94,12 @@ var chat = {
 		(function getUsersTimeoutFunction(){
 			chat.getUsers(getUsersTimeoutFunction);
 		})();
-		
+
+		(function getCRUDUsersTimeoutFunction(){
+			chat.getCRUDUsers(getCRUDUsersTimeoutFunction);
+		})();
+
+
 	},
 	
 	// The login method hides displays the
@@ -293,6 +298,29 @@ var chat = {
 			
 			$('#CRUDUsers').html(users.join(''));
 			
+			setTimeout(callback,15000);
+		});
+	},
+
+
+	getCRUDUsers : function(callback){
+		$.chatGET('getCRUDUsers',function(r){
+
+			var crudResult = [];
+
+			crudResult.push('<table>');
+
+			for(var i=0; i< r.result.length;i++){
+				if(r.result[i]){
+					crudResult.push(chat.render('crudUser',r.result[i]));
+				}
+			}
+			crudResult.push('</table>');
+
+
+
+			$('#CRUDUsers').html(crudResult.join(''));
+
 			setTimeout(callback,15000);
 		});
 	},
