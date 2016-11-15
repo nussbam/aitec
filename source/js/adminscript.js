@@ -283,7 +283,8 @@ var chat = {
 					users.push(chat.render('user',r.users[i]));
 				}
 			}
-			
+
+
 			var message = '';
 			
 			if(r.total<1){
