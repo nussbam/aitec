@@ -120,7 +120,7 @@ class Chat{
 
     public static function getCRUDUsers(){
         $result = DB::query("SELECT id, name, userlevel FROM webchat_users where userlevel!='admin'");
-
+        throw new Exception("CRUD Function is sucessfully called" + $result);
         return array( $result);
     }
 	
