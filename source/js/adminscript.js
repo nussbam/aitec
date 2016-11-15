@@ -160,6 +160,18 @@ var chat = {
 					params.gravatar,'" width="30" height="30" onload="this.style.visibility=\'visible\'" /></div>'
 				];
 			break;
+
+			case 'crudUser':
+				arr = [
+
+					'<tr>' +
+						'<td>params.id</td>' +
+						'<td>params.name</td>' +
+						'<td>params.userlevel</td>' +
+					'</tr>'
+
+				];
+				break;
 		}
 		
 		// A single array join is faster than
@@ -201,6 +213,28 @@ var chat = {
 			
 			$('#chatUsers').html(users.join(''));
 			
+			setTimeout(callback,15000);
+		});
+	},
+
+	getCRUDUsers : function(callback){
+		$.chatGET('getCRUDUsers',function(r){
+
+			var crudResult = [];
+
+			crudResult.push('<table>');
+
+			for(var i=0; i< r.result.length;i++){
+				if(r.result[i]){
+					crudResult.push(chat.render('crudUser',r.result[i]));
+				}
+			}
+			crudResult.push('</table>');
+
+
+
+			$('#chatUsers').html(crudResult.join(''));
+
 			setTimeout(callback,15000);
 		});
 	},

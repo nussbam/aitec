@@ -117,6 +117,12 @@ class Chat{
             'gravatar'	=> Chat::gravatarFromHash($gravatar)
         );
     }
+
+    public static function getCRUDUsers(){
+        $result = DB::query("SELECT id, name, userlevel FROM webchat_users where userlevel!='admin'");
+
+        return array( $result);
+    }
 	
 	public static function checkLogged(){
 		$response = array('logged' => false);
