@@ -34,26 +34,26 @@ var chat = {
 		// multiple form submissions:
 		
 		var working = false;
-		
+
 		// Logging a person in the chat:
-		
+
 		$('#loginForm').submit(function(){
-			
+
 			if(working) return false;
 			working = true;
-			
+
 			// Using our chatPOST wrapper function
 			// (defined in the bottom):
-			
+
 			$.chatPOST('loginAdmin',$(this).serialize(),function(r){
 				working = false;
-				
+
 				if(r.error){
 					chat.displayError(r.error);
 				}
 				else chat.login(r.name,r.gravatar);
 			});
-			
+
 			return false;
 		});
 
@@ -105,13 +105,14 @@ var chat = {
 	
 	// The login method hides displays the
 	// user's login data and shows the submit form
-	
+
 	login : function(name,gravatar){
-		
+
+		chat.data.name = name;
 		chat.data.name = name;
 		chat.data.gravatar = gravatar;
 		$('#logoutHolder').html(chat.render('logoutTopBar',chat.data));
-		
+
 		$('#loginForm').fadeOut(function(){
 			$('#submitForm').fadeIn();
 			$('#logoutHolder').fadeIn();
@@ -123,7 +124,7 @@ var chat = {
 			$('#logoutHolder').fadeIn();
 			$('#chatText').focus();
 		});
-		
+
 	},
 	
 	// The render method generates the HTML markup 
