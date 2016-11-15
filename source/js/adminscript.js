@@ -233,7 +233,7 @@ var chat = {
 
 
 
-			$('#chatUsers').html(crudResult.join(''));
+			$('#CRUDUsers').html(crudResult.join(''));
 
 			setTimeout(callback,15000);
 		});
