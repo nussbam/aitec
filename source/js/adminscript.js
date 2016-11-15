@@ -88,11 +88,12 @@ var chat = {
 		
 		// Checking whether the user is already logged (browser refresh)
 		
-		$.chatGET('checkLogged',function(r){
+		/*TODO add a check so the admin doesn't has to login after a form switch
+		$.chatGET('checkAdminLogged',function(r){
 			if(r.logged){
 				chat.login(r.loggedAs.name,r.loggedAs.gravatar);
 			}
-		});
+		});*/
 		
 		// Self executing timeout functions
 		
