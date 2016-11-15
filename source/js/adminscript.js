@@ -96,7 +96,9 @@ var chat = {
 		
 		// Self executing timeout functions
 		
-
+		(function getChatsTimeoutFunction(){
+			chat.getChats(getChatsTimeoutFunction);
+		})();
 		
 		(function getUsersTimeoutFunction(){
 			chat.getUsers(getUsersTimeoutFunction);
@@ -209,7 +211,7 @@ var chat = {
 			
 			users.push('<p class="count">'+message+'</p>');
 			
-			$('#chatUsers').html(users.join(''));
+			$('#CRUDUsers').html(users.join(''));
 			
 			setTimeout(callback,15000);
 		});
