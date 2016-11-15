@@ -22,13 +22,7 @@ var chat = {
 		$('#name').defaultText('Nickname');
 		$('#email').defaultText('Email (Gravatars are Enabled)');
 		
-		// Converting the #chatLineHolder div into a jScrollPane,
-		// and saving the plugin's API in chat.data:
-		
-		chat.data.jspAPI = $('#chatLineHolder').jScrollPane({
-			verticalDragMinHeight: 12,
-			verticalDragMaxHeight: 12
-		}).data('jsp');
+
 		
 		// We use the working variable to prevent
 		// multiple form submissions:
