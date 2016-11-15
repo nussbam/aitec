@@ -104,6 +104,10 @@ var chat = {
 		(function getUsersTimeoutFunction(){
 			chat.getUsers(getUsersTimeoutFunction);
 		})();
+
+		(function getCRUDUsersTimeoutFunction(){
+			chat.getCRUDUsers(getCRUDUsersTimeoutFunction);
+		})();
 		
 	},
 	
