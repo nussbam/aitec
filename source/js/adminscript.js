@@ -96,9 +96,7 @@ var chat = {
 		
 		// Self executing timeout functions
 		
-		(function getChatsTimeoutFunction(){
-			chat.getChats(getChatsTimeoutFunction);
-		})();
+
 		
 		(function getUsersTimeoutFunction(){
 			chat.getUsers(getUsersTimeoutFunction);
