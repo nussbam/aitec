@@ -157,9 +157,9 @@ var chat = {
 
 			crudResult.push('<table>');
 
-			for(var i=0; i< r.result.length;i++){
-				if(r.result[i]){
-					crudResult.push(chat.render('crudUser',r.result[i]));
+			for(var i=0; i< r.length;i++){
+				if(r[i]){
+					crudResult.push(chat.render('crudUser',r[i]));
 				}
 			}
 			crudResult.push('</table>');
