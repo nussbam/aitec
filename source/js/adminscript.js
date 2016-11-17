@@ -69,7 +69,7 @@ var chat = {
 
 				$('#CRUDUsers').html(crudResult.join(''));
 
-				setTimeout(callback,15000);
+
 			});
 
 			return false;
@@ -146,6 +146,29 @@ var chat = {
 			$('#submitForm').fadeIn();
 			$('#logoutHolder').fadeIn();
 			$('#chatText').focus();
+		});
+
+		$.chatGET('getCRUDUsers', $(this).serialize(),function(r){
+			working = false;
+			if (r.error) {
+				chat.displayError(r.error);
+			}
+			var crudResult = [];
+
+			crudResult.push('<table>');
+
+			for(var i=0; i< r.result.length;i++){
+				if(r.result[i]){
+					crudResult.push(chat.render('crudUser',r.result[i]));
+				}
+			}
+			crudResult.push('</table>');
+
+
+
+			$('#CRUDUsers').html(crudResult.join(''));
+
+
 		});
 
 	},
