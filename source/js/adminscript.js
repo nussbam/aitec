@@ -164,10 +164,7 @@ var chat = {
 		(function getChatsTimeoutFunction(){
 			chat.getChats(getChatsTimeoutFunction);
 		})();
-		
-		(function getUsersTimeoutFunction(){
-			chat.getUsers(getUsersTimeoutFunction);
-		})();
+
 
 		/*(function getCRUDUsersTimeoutFunction(){
 			chat.getCRUDUsers(getCRUDUsersTimeoutFunction);
@@ -389,36 +386,7 @@ var chat = {
 		});
 	},
 	
-	// Requesting a list with all the users.
-	
-	getUsers : function(callback){
-		$.chatGET('getUsers',function(r){
-			
-			var users = [];
-			
-			for(var i=0; i< r.users.length;i++){
-				if(r.users[i]){
-					users.push(chat.render('user',r.users[i]));
-				}
-			}
 
-
-			var message = '';
-			
-			if(r.total<1){
-				message = 'No one is online';
-			}
-			else {
-				message = r.total+' '+(r.total == 1 ? 'person':'people')+' online';
-			}
-			
-			users.push('<p class="count">'+message+'</p>');
-			
-			$('#CRUDUsers').html(users.join(''));
-			
-			setTimeout(callback,15000);
-		});
-	},
 
 
 	/*getCRUDUsers : function(callback){
