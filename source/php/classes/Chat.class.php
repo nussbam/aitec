@@ -129,7 +129,7 @@ class Chat{
             return $users;
         }else{
             return array(
-                'error' => 'no session'
+                'error' => 'No permission to see the user-records'
             );
         }
     }
