@@ -138,7 +138,7 @@ class Chat{
     {
         $esc_data_id = DB::esc($data_uid);
         $esc_dstatus = DB::esc($dstatus);
-        $result = DB::query("UPDATE webchat_users SET status = '" . $esc_dstatus . "' WHERE id = '" . $esc_data_id . "'");
+        $result = DB::query("UPDATE webchat_users SET userlevel = '" . $esc_dstatus . "' WHERE id = '" . $esc_data_id . "'");
         return $result;
     }
 
