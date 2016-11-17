@@ -133,6 +133,21 @@ class Chat{
             );
         }
     }
+
+    public static function saveUser($data_uid, $dstatus)
+    {
+        $esc_data_id = DB::esc($data_uid);
+        $esc_dstatus = DB::esc($dstatus);
+        $result = DB::query("UPDATE user SET status = '" . $esc_dstatus . "' WHERE id = '" . $esc_data_id . "'");
+        return $result;
+    }
+
+    public static function deleteUser($data_uid)
+    {
+        $esc_ID = DB::esc($data_uid);
+        $result = DB::query("DELETE FROM user WHERE id = '" . $esc_ID . "'");
+        return $result;
+    }
 	
 	public static function checkLogged(){
 		$response = array('logged' => false);

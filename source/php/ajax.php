@@ -54,6 +54,13 @@ try{
             $response = Chat::getCRUDUsers();
             break;
 
+		case 'deleteUser':
+			$response = Chat::deleteUser($_POST['uid']);
+			break;
+		case 'saveUser':
+			$response = Chat::saveUser($_POST['uID'], $_POST['status']);
+			break;
+
 		case 'checkLogged':
 			$response = Chat::checkLogged();
 		break;

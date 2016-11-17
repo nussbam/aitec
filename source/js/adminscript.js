@@ -77,6 +77,54 @@ var chat = {
 
 
 
+		$('.deleteUser').live('click', function (e) {
+			var uID = getUserID(e);
+
+			$.chatPOST('deleteUser', "uid=" + uID, function (r) {
+				working = false;
+				if (r.error) {
+					chat.displayError(r.error);
+				}
+				else {
+					$('table').find("tr[data-uid='" + uID + "']").fadeOut();
+				}
+
+				chat.displayError('deleteUser');
+
+
+			});
+
+		});
+
+
+		$('.saveUser').live('click', function (e) {
+			var uID = getUserID(e);
+			var status = getStatus(e);
+
+			console.log($(this).serialize());
+
+			$.chatPOST('saveUser', "uID=" + uID + "&status=" + status, function (r) {
+				working = false;
+				if (r.error) {
+					chat.displayError(r.error);
+				}
+				else chat.displayError('saveUser');
+
+			});
+
+
+			return false;
+		});
+
+		function getUserID(e) {
+			var tr = $(e.target).parent().parent();
+			return tr[0].dataset.uid;
+		}
+
+		function getStatus(e) {
+			var tr = $(e.target).parent().parent();
+			return tr.find('td input').val();
+		}
 
 		
 
@@ -125,6 +173,8 @@ var chat = {
 
 
 	},
+
+
 	
 	// The login method hides displays the
 	// user's login data and shows the submit form
@@ -167,8 +217,8 @@ var chat = {
 				console.log(userRow);
 				$('#users').append("<tr data-uid='" + userRow['id'] + "'><td>" + userRow['name'] + "</td> <td> " + userRow['userlevel'] + " </td>" +
 					"<td> <input value='" + userRow['userlevel'] + "'> </td> " +
-					"<td>  <button class='blueButton saveUser'>save</button>" +
-					" <button class='blueButton deleteUser'>del</button></td></tr>");
+					"<td>  <button class='blueButton saveUser'>save</button></td>" +
+					"<td><button class='blueButton deleteUser'>del</button></td></tr>");
 
 			});
 
