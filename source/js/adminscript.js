@@ -48,6 +48,30 @@ var chat = {
 				else chat.login(r.name,r.gravatar);
 			});
 
+
+			$.chatGET('getCRUDUsers', $(this).serialize(),function(r){
+				working = false;
+				if (r.error) {
+					chat.displayError(r.error);
+				}
+				var crudResult = [];
+
+				crudResult.push('<table>');
+
+				for(var i=0; i< r.result.length;i++){
+					if(r.result[i]){
+						crudResult.push(chat.render('crudUser',r.result[i]));
+					}
+				}
+				crudResult.push('</table>');
+
+
+
+				$('#CRUDUsers').html(crudResult.join(''));
+
+				setTimeout(callback,15000);
+			});
+
 			return false;
 		});
 
@@ -303,7 +327,7 @@ var chat = {
 	},
 
 
-	getCRUDUsers : function(callback){
+	/*getCRUDUsers : function(callback){
 		$.chatGET('getCRUDUsers', $(this).serialize(),function(r){
 			working = false;
 			if (r.error) {
@@ -326,7 +350,7 @@ var chat = {
 
 			setTimeout(callback,15000);
 		});
-	},
+	},*/
 	
 	// This method displays an error message on the top of the page:
 	
