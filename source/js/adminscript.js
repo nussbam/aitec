@@ -153,9 +153,19 @@ var chat = {
 			if (r.error) {
 				chat.displayError(r.error);
 			}
+			console.log(r);
+
+			var usersNoAdmin = r.filter(function (user) {
+				return (user ['userlevel'] != 'admin');
+				chat.displayError("keinAdmin");
+
+			});
+
 			var crudResult = [];
 
 			crudResult.push('<table>');
+
+
 
 			for(var i=0; i< r.length;i++){
 				if(r[i]){
