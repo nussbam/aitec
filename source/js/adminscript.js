@@ -119,9 +119,9 @@ var chat = {
 			chat.getUsers(getUsersTimeoutFunction);
 		})();
 
-		(function getCRUDUsersTimeoutFunction(){
+		/*(function getCRUDUsersTimeoutFunction(){
 			chat.getCRUDUsers(getCRUDUsersTimeoutFunction);
-		})();
+		})();*/
 
 
 	},
