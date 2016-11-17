@@ -89,7 +89,7 @@ var chat = {
 					$('table').find("tr[data-uid='" + uID + "']").fadeOut();
 				}
 
-				chat.displayError('deleteUser');
+				chat.displayError('Deleted User sucessfully!');
 
 
 			});
@@ -108,7 +108,7 @@ var chat = {
 				if (r.error) {
 					chat.displayError(r.error);
 				}
-				else chat.displayError('saveUser');
+				else chat.displayError('Changed User-Level successfully!');
 
 			});
 
@@ -146,6 +146,8 @@ var chat = {
 				$('#loginForm').fadeIn();
 				$(this).remove();
 			});
+
+			$('#users').empty();
 			
 
 			
