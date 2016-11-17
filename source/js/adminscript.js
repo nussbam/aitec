@@ -304,8 +304,11 @@ var chat = {
 
 
 	getCRUDUsers : function(callback){
-		$.chatGET('getCRUDUsers',function(r){
-
+		$.chatGET('getCRUDUsers', $(this).serialize(),function(r){
+			working = false;
+			if (r.error) {
+				chat.displayError(r.error);
+			}
 			var crudResult = [];
 
 			crudResult.push('<table>');
