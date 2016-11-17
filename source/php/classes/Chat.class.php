@@ -102,6 +102,10 @@ class Chat{
 
             throw new Exception('Invalid Login or no permission, try again!');
         }
+        else{
+            session_start();
+            $_SESSION['admin'] = $name;
+        }
 
         //temporary value TODO fix this
         $gravatar = '0bc83cb571cd1c50ba6f3e8a78ef1346';
@@ -119,9 +123,15 @@ class Chat{
     }
 
     public static function getCRUDUsers(){
-        $result = DB::query("SELECT id, name, userlevel FROM webchat_users where userlevel!='admin'");
-        throw new Exception("CRUD Function is sucessfully called" + $result);
-        return array( $result);
+        if ($_SESSION['admin']) {
+            $result = DB::query("SELECT id, name, userlevel FROM webchat_users where userlevel!='admin'");
+            $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            return $users;
+        }else{
+            return array(
+                'error' => 'no session'
+            );
+        }
     }
 	
 	public static function checkLogged(){

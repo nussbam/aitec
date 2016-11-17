@@ -50,7 +50,9 @@ try{
 			$response = Chat::loginAdmin($_POST['name'],$_POST['password']);
 			break;
 
-
+        case 'getCRUDUsers':
+            $response = Chat::getCRUDUsers();
+            break;
 
 		case 'checkLogged':
 			$response = Chat::checkLogged();
